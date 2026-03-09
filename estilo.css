@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url(img/fundo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*HEADER*/
+
+header {
+  padding: 40px 0;
+  position: relative;
+  text-align: right;
+}
+
+header p {
+  margin-right: 50px;
+  color: rgb(46, 41, 41);
+  font-weight: 900;
+}
+
+#horas{
+    font-size: 40px;
+}
+
+#data{
+    font-size: 20px;
+}
