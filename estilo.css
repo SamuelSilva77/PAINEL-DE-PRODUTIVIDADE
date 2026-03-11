@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+:root{
+  --corPrincial: rgb(46, 41, 41);
+}
+
 body {
   background-image: url(img/fundo.png);
   background-repeat: no-repeat;
@@ -20,7 +24,7 @@ header {
 
 header p {
   margin-right: 50px;
-  color: rgb(46, 41, 41);
+  color: var(--corPrincial);
   font-weight: 900;
 }
 
@@ -30,4 +34,89 @@ header p {
 
 #data{
     font-size: 20px;
+}
+
+/*LISTA DE TAREFAS*/
+
+.lista{
+  width: max-content;
+  border-radius: 5px;
+  background-color: white;
+  box-shadow: 0 0 20px black;
+}
+
+.lista h2{
+  color: var(--corPrincial);
+  padding: 20px;
+  border-bottom: 1px solid var(--corPrincial);
+}
+
+/*LISTA DE BOTOES (FILTRAR TAREFAS) */
+
+.listaBotao{
+  padding: 20px;
+  border-bottom: 1px solid var(--corPrincial);
+  display: flex;
+}
+
+.listaBotao button{
+  background-color: rgb(245, 242, 242);
+  border: none;
+  box-shadow: 0 0 1px black;
+  padding: 7px 18px;
+}
+
+.listaBotao button:active{
+  transform: scale(0.95);
+}
+
+
+/*ADICIONAR TAREFA*/
+
+.adicionarTarefa{
+  padding: 20px;
+  display: flex;
+}
+
+.adicionarTarefa input{
+  padding: 7px 35px;
+  border-radius: 0;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border: none;
+  box-shadow: 0 0 2px black;
+}
+
+.adicionarTarefa button{
+  padding: 5px 25px;
+  background-color: green;
+  border: none;
+  color: white;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+/*TAREFAS*/
+
+
+.tarefa{
+  position: relative;
+  display: flex;
+  padding: 15px 20px;
+  width: 100%;
+  box-shadow: 0 0 1px black;
+}
+
+.tarefa input{
+  transform: scale(1.4);
+  margin-right: 10px;
+}
+
+.tarefa button{
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--corPrincial);
+  text-decoration: underline;
+  position: absolute;
+  right: 20px;
 }

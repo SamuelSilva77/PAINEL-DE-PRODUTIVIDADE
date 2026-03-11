@@ -11,14 +11,43 @@
     <link rel="stylesheet" href="estilo.css" />
   </head>
   <body>
-    <header>
 
-        <p id="horas">12:45 PM</p>
-        <p id="data">Tuesday, April 15</p>
+    <header>
+        <p id="horas"></p>
+        <p id="data"></p>
 
         <br>
         <hr />
-
     </header>
+
+    <div class="lista">
+      
+      <h2>To-Do-List</h2>
+
+      <div class="listaBotao">
+        <button style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;">All</button>
+        <button>Pending</button>
+        <button style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;">Completed</button>
+      </div>
+
+
+      <div class="adicionarTarefa ">
+        <input type="text" placeholder="Adicione uma tarefa.." id="inputAdd">
+        <button onclick="adicionarTarefa()">Add</button>
+      </div>
+
+      <div class="tarefas">
+
+        <div class="tarefa" id="Desenhar">
+          <input type="checkbox" name="" id="">
+          <p>Desenhar</p>
+          <button onclick="deletar('Desenhar')">Deletar</button>
+        </div>
+
+      
+      </div>
+    
+      <br>
+    </div>
   </body>
 </html>
