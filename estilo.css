@@ -4,7 +4,7 @@
   padding: 0;
 }
 
-:root{
+:root {
   --corPrincial: rgb(46, 41, 41);
 }
 
@@ -28,24 +28,24 @@ header p {
   font-weight: 900;
 }
 
-#horas{
-    font-size: 40px;
+#horas {
+  font-size: 40px;
 }
 
-#data{
-    font-size: 20px;
+#data {
+  font-size: 20px;
 }
 
 /*LISTA DE TAREFAS*/
 
-.lista{
+.lista {
   width: max-content;
   border-radius: 5px;
   background-color: white;
   box-shadow: 0 0 20px black;
 }
 
-.lista h2{
+.lista h2 {
   color: var(--corPrincial);
   padding: 20px;
   border-bottom: 1px solid var(--corPrincial);
@@ -53,32 +53,31 @@ header p {
 
 /*LISTA DE BOTOES (FILTRAR TAREFAS) */
 
-.listaBotao{
+.listaBotao {
   padding: 20px;
   border-bottom: 1px solid var(--corPrincial);
   display: flex;
 }
 
-.listaBotao button{
+.listaBotao button {
   background-color: rgb(245, 242, 242);
   border: none;
   box-shadow: 0 0 1px black;
   padding: 7px 18px;
 }
 
-.listaBotao button:active{
+.listaBotao button:active {
   transform: scale(0.95);
 }
 
-
 /*ADICIONAR TAREFA*/
 
-.adicionarTarefa{
+.adicionarTarefa {
   padding: 20px;
   display: flex;
 }
 
-.adicionarTarefa input{
+.adicionarTarefa input {
   padding: 7px 35px;
   border-radius: 0;
   border-top-left-radius: 3px;
@@ -87,7 +86,7 @@ header p {
   box-shadow: 0 0 2px black;
 }
 
-.adicionarTarefa button{
+.adicionarTarefa button {
   padding: 5px 25px;
   background-color: green;
   border: none;
@@ -98,21 +97,50 @@ header p {
 
 /*TAREFAS*/
 
-
-.tarefa{
+.tarefa {
   position: relative;
   display: flex;
   padding: 15px 20px;
   width: 100%;
   box-shadow: 0 0 1px black;
+  font-size: 18px;
+  letter-spacing: 2px;
 }
 
-.tarefa input{
+.tarefa input {
   transform: scale(1.4);
   margin-right: 10px;
 }
 
-.tarefa button{
+.tarefa button {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  color: var(--corPrincial);
+  text-decoration: underline;
+  position: absolute;
+  right: 20px;
+}
+
+/*MARCADO COMO CONCLUIDO*/
+
+.tarefaC {
+  position: relative;
+  display: flex;
+  padding: 15px 20px;
+  width: 100%;
+  box-shadow: 0 0 1px black;
+  text-decoration: line-through;
+  background-color: #d4cfcf;
+  font-size: 18px;
+  letter-spacing: 2px;
+}
+
+.tarefaC input {
+  transform: scale(1.4);
+  margin-right: 10px;
+}
+
+.tarefaC button {
   border: none;
   background-color: rgba(255, 255, 255, 0);
   color: var(--corPrincial);
