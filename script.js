@@ -48,7 +48,7 @@ function adicionarTarefa() {
     enviarHTML(caixaBaixa, "tarefa");
 
     tarefasArray.push({ tarefa: caixaBaixa, completado: false });
-    console.log(tarefasArray);
+
     inputAdd.value = "";
     inputAdd.focus();
 
@@ -61,10 +61,13 @@ function adicionarTarefa() {
   }
 }
 
-inputAdd.addEventListener("keyup",(valor) => {
-  if (valor.keyCode === 13) {
-    adicionarTarefa()
+inputAdd.addEventListener("keyup", (valor) => {
+  if (valor.key == "Enter") {
+    adicionarTarefa();
   }
+
+  //ATUALIZAR A TABELA DE PROGRESSO
+  atualizarTabela();
 });
 
 //MUDAR CLASSE (MARCAR COMO CONCLUIDO)
@@ -96,6 +99,9 @@ function mudarClasse(idTarefa) {
       JSON.stringify({ tarefa: idTarefa, completado: false }),
     );
   }
+
+  //ATUALIZAR TABELA DE CONCLUSAO
+  atualizarTabela();
 }
 
 //DELETAR TAREFA
@@ -113,7 +119,9 @@ function deletar(valor) {
     }
   });
   tarefasArray.splice(posicao, 1);
-  console.log(tarefasArray);
+
+  //ATUALIZAR A TABELA DE PROGRESSO
+  atualizarTabela();
 }
 
 //LEMBRAR TAREFA
@@ -123,11 +131,10 @@ for (let i = 0; i < localStorage.length; i++) {
   let info = JSON.parse(localStorage.getItem(ordem));
 
   tarefasArray.push({ tarefa: info.tarefa, completado: info.completado });
-  console.log(info.completado);
   if (info.completado == true) {
     //FUNÇAO QUE MUDA O HTML
     enviarHTML(info.tarefa, "tarefaC");
-  } else {
+  } else if (info.completado == false) {
     //FUNÇAO QUE MUDA O HTML
     enviarHTML(info.tarefa, "tarefa");
   }
@@ -169,3 +176,38 @@ function concluidas() {
     }
   });
 }
+
+///PAINEL DE CONCLUSAO
+
+let completos = document.getElementById("barraConcluidos");
+let pendentes = document.getElementById("barraPendentes");
+
+//CAMPO DE TEXTO
+
+let spanCompletos = document.getElementById("spanConcluidas")
+let spanPendentes = document.getElementById("spanPendentes")
+
+function atualizarTabela() {
+  completos.max = tarefasArray.length;
+  pendentes.max = tarefasArray.length;
+
+  let tarefasConcluidas = []
+  let tarefasPendentes = []
+
+  tarefasArray.forEach((valor, ordem) => {
+    if(valor.completado == true){
+      tarefasConcluidas.push(ordem)
+    }else if(valor.completado == false){
+      tarefasPendentes.push(ordem)
+    }
+
+  })
+  completos.value = tarefasConcluidas.length
+  pendentes.value = tarefasPendentes.length
+
+  //ATUALIZAR CAMPO DE TEXTO
+  spanCompletos.innerHTML = tarefasConcluidas.length
+  spanPendentes.innerHTML = tarefasPendentes.length
+}
+atualizarTabela();
+

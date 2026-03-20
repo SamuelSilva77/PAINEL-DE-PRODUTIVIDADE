@@ -11,37 +11,67 @@
     <link rel="stylesheet" href="estilo.css" />
   </head>
   <body>
-
     <header>
-        <p id="horas"></p>
-        <p id="data"></p>
+      <p id="horas"></p>
+      <p id="data"></p>
 
-        <br>
-        <hr />
+      <br />
+      <hr />
     </header>
 
     <div class="lista">
-      
       <h2>To-Do-List</h2>
 
       <div class="listaBotao">
-        <button style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;" onclick="todas()">All</button>
+        <button
+          style="border-top-left-radius: 5px; border-bottom-left-radius: 5px"
+          onclick="todas()"
+        >
+          All
+        </button>
         <button onclick="pendente()">Pending</button>
-        <button onclick="concluidas()" style="border-top-right-radius: 5px; border-bottom-right-radius: 5px;">Completed</button>
+        <button
+          onclick="concluidas()"
+          style="border-top-right-radius: 5px; border-bottom-right-radius: 5px"
+        >
+          Completed
+        </button>
       </div>
 
-
-      <div class="adicionarTarefa ">
-        <input type="text" placeholder="Adicione uma tarefa.." id="inputAdd">
+      <div class="adicionarTarefa">
+        <input type="text" placeholder="Adicione uma tarefa.." id="inputAdd" />
         <button onclick="adicionarTarefa()">Add</button>
       </div>
 
-      <div class="tarefas">
+      <div class="tarefas"></div>
+
+      <!--PAINEL DE CONCLUSAO-->
 
       
-      </div>
-    
-      <br>
+      <br />
     </div>
+    <br><br>
+    <div class="progressos">
+      <p style="font-size: 20px; margin: 10px 0; letter-spacing: 1px;">Progresso Tarefas</p>
+      <hr />
+  
+      <div class="status">
+  
+        <div class="concluidas">
+          <p style="letter-spacing: 1px;">Concluidas</p>
+          <span id="spanConcluidas">8 Tarefas</span>
+          <progress value="0" max="0" id="barraConcluidos"></progress>
+        </div>
+        <hr>
+        <div class="pendentes">
+          <p style="letter-spacing: 1px;">Pendentes</p>
+          <span id="spanPendentes">8 Tarefas</span>
+          <progress max="0" value="0" style="accent-color: red;" id="barraPendentes"></progress>
+        </div>
+  
+      </div>
+
+    </div>
+
   </body>
 </html>

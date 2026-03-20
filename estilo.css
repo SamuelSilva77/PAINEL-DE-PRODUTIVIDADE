@@ -12,6 +12,7 @@ body {
   background-image: url(img/fundo.png);
   background-repeat: no-repeat;
   background-size: cover;
+  padding: 20px;
 }
 
 /*HEADER*/
@@ -147,4 +148,60 @@ header p {
   text-decoration: underline;
   position: absolute;
   right: 20px;
+}
+
+/*PAINEL DE PROGRESSO*/
+
+.progressos{
+  width: 1000px;
+  padding: 10px 15px;
+  background-color: white;
+  font-weight: bolder;
+  border-radius: 5px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+.progressos div{
+  margin: 15px 0;
+}
+
+.progressos span{
+  font-weight: lighter;
+  font-family: arial;
+}
+
+.status{
+  display: flex;
+  justify-content: space-around;
+}
+
+.concluidas, .pendentes{
+  display: flex;
+  flex-flow: column;
+  position: relative;
+}
+
+.status span{
+  position: absolute;
+  right: 10px;
+}
+
+.status progress{
+  width: 420px;
+  padding: 15px 0;
+  accent-color: green;
+}
+
+
+@media only screen and (max-width: 1000px) {
+.status{
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column;
+}
+
+.progressos{
+  width: 450px;
+}
 }
