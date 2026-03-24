@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&family=Shadows+Into+Light&display=swap");
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,8 +43,8 @@ header p {
 
 .lista {
   width: max-content;
-  border-radius: 5px;
   background-color: white;
+  border-radius: 5px;
   box-shadow: 0 0 20px black;
 }
 
@@ -152,56 +154,104 @@ header p {
 
 /*PAINEL DE PROGRESSO*/
 
-.progressos{
+.progressos {
   width: 1000px;
   padding: 10px 15px;
   background-color: white;
   font-weight: bolder;
   border-radius: 5px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-
-.progressos div{
+.progressos div {
   margin: 15px 0;
 }
 
-.progressos span{
+.progressos span {
   font-weight: lighter;
   font-family: arial;
 }
 
-.status{
+.status {
   display: flex;
   justify-content: space-around;
 }
 
-.concluidas, .pendentes{
+.concluidas,
+.pendentes {
   display: flex;
   flex-flow: column;
   position: relative;
 }
 
-.status span{
+.status span {
   position: absolute;
   right: 10px;
 }
 
-.status progress{
+.status progress {
   width: 420px;
   padding: 15px 0;
   accent-color: green;
 }
 
-
 @media only screen and (max-width: 1000px) {
-.status{
-  display: flex;
-  justify-content: space-around;
-  flex-flow: column;
+  .status {
+    display: flex;
+    justify-content: space-around;
+    flex-flow: column;
+  }
+
+  .progressos {
+    width: 450px;
+  }
 }
 
-.progressos{
-  width: 450px;
+/*QUICK NOTES*/
+
+.quicknotesCard {
+  width: 355px;
+  margin: 20px 0;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 20px black;
 }
+
+.quicknotesCard p {
+  padding: 15px;
+  font-size: 20px;
+  font-family: "Google Sans", sans-serif;
+  letter-spacing: 1px;
+}
+
+.addQuickNote {
+  margin: 15px;
+  width: 325px;
+  padding: 5px 0;
+}
+
+.containerQuickNote {
+  margin: 15px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.quicknote {
+  width: 150px;
+  min-height: 120px;
+  background: #ffe082;
+  margin: 15px 10px 0 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);  
+  border-bottom-right-radius: 15px;
+  
+}
+
+.quicknote span{
+  font-size: 20px;
+  font-family: "Shadows Into Light", cursive;
+  letter-spacing: 2px;
+  display: inline-block;
+  transform: rotate(-5deg);
 }

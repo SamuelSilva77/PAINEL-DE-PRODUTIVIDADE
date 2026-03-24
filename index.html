@@ -47,31 +47,44 @@
 
       <!--PAINEL DE CONCLUSAO-->
 
-      
       <br />
     </div>
-    <br><br>
+
+    <div class="quicknotesCard">
+      <p>Quick Notes</p>
+      <hr>
+      <div class="containerQuickNote" id="containerQuickNote">
+        
+      </div>
+      <hr>
+      <button class="addQuickNote" onclick="addQuickNote()">+ Add Note</button>
+    </div>
+
+
     <div class="progressos">
-      <p style="font-size: 20px; margin: 10px 0; letter-spacing: 1px;">Progresso Tarefas</p>
+      <p style="font-size: 20px; margin: 10px 0; letter-spacing: 1px">
+        Progresso Tarefas
+      </p>
       <hr />
-  
+
       <div class="status">
-  
         <div class="concluidas">
-          <p style="letter-spacing: 1px;">Concluidas</p>
+          <p style="letter-spacing: 1px">Concluidas</p>
           <span id="spanConcluidas">8 Tarefas</span>
           <progress value="0" max="0" id="barraConcluidos"></progress>
         </div>
-        <hr>
+        <hr />
         <div class="pendentes">
-          <p style="letter-spacing: 1px;">Pendentes</p>
+          <p style="letter-spacing: 1px">Pendentes</p>
           <span id="spanPendentes">8 Tarefas</span>
-          <progress max="0" value="0" style="accent-color: red;" id="barraPendentes"></progress>
+          <progress
+            max="0"
+            value="0"
+            style="accent-color: red"
+            id="barraPendentes"
+          ></progress>
         </div>
-  
       </div>
-
     </div>
-
   </body>
 </html>

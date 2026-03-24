@@ -53,11 +53,7 @@ function adicionarTarefa() {
     inputAdd.focus();
 
     //LEMBRAR DA TAREFA
-    let informaçoes = JSON.stringify({
-      tarefa: caixaBaixa,
-      completado: false,
-    });
-    localStorage.setItem(caixaBaixa, informaçoes);
+    localStorage.setItem("array", JSON.stringify(tarefasArray));
   }
 }
 
@@ -70,10 +66,10 @@ inputAdd.addEventListener("keyup", (valor) => {
   atualizarTabela();
 });
 
+
 //MUDAR CLASSE (MARCAR COMO CONCLUIDO)
 function mudarClasse(idTarefa) {
   let element = document.getElementById(idTarefa);
-  localStorage.removeItem(idTarefa);
 
   let posiçao = "";
   tarefasArray.forEach((index, ordem) => {
@@ -87,16 +83,16 @@ function mudarClasse(idTarefa) {
     element.classList.add("tarefaC");
     tarefasArray[posiçao].completado = true;
     localStorage.setItem(
-      idTarefa,
-      JSON.stringify({ tarefa: idTarefa, completado: true }),
+      "array",
+      JSON.stringify(tarefasArray),
     );
   } else {
     element.classList.remove("tarefaC");
     element.classList.add("tarefa");
     tarefasArray[posiçao].completado = false;
     localStorage.setItem(
-      idTarefa,
-      JSON.stringify({ tarefa: idTarefa, completado: false }),
+      "array",
+      JSON.stringify(tarefasArray),
     );
   }
 
@@ -109,8 +105,7 @@ function mudarClasse(idTarefa) {
 function deletar(valor) {
   let elemento = document.getElementById(valor);
   elemento.remove();
-  localStorage.removeItem(valor);
-
+  
   //DELETAR DO ARRAY
   let posicao = "";
   tarefasArray.forEach((index, ordem) => {
@@ -119,6 +114,7 @@ function deletar(valor) {
     }
   });
   tarefasArray.splice(posicao, 1);
+  localStorage.setItem("array", JSON.stringify(tarefasArray));
 
   //ATUALIZAR A TABELA DE PROGRESSO
   atualizarTabela();
@@ -126,18 +122,20 @@ function deletar(valor) {
 
 //LEMBRAR TAREFA
 
-for (let i = 0; i < localStorage.length; i++) {
-  let ordem = localStorage.key(i);
-  let info = JSON.parse(localStorage.getItem(ordem));
-
-  tarefasArray.push({ tarefa: info.tarefa, completado: info.completado });
-  if (info.completado == true) {
-    //FUNÇAO QUE MUDA O HTML
-    enviarHTML(info.tarefa, "tarefaC");
-  } else if (info.completado == false) {
-    //FUNÇAO QUE MUDA O HTML
-    enviarHTML(info.tarefa, "tarefa");
-  }
+for (let i = 0; i < 1; i++) {
+  let info = JSON.parse(localStorage.getItem("array"));
+  
+  info.forEach((valor) => {
+    if (valor.completado == true) {
+      //FUNÇAO QUE MUDA O HTML
+      enviarHTML(valor.tarefa, "tarefaC");
+    } else if (valor.completado == false) {
+      //FUNÇAO QUE MUDA O HTML
+      enviarHTML(valor.tarefa, "tarefa");
+    }
+    
+    tarefasArray.push({ tarefa: valor.tarefa, completado: valor.completado });
+  })
 }
 
 //FILTRAGEM
@@ -210,4 +208,41 @@ function atualizarTabela() {
   spanPendentes.innerHTML = tarefasPendentes.length
 }
 atualizarTabela();
+
+//QUICK NOTE
+
+const quicknotas = []
+let containerQuickNote = document.getElementById("containerQuickNote")
+
+function addQuickNote(){
+  let tarefa = prompt("Insira a tarefa")
+
+  if(tarefa){
+    containerQuickNote.innerHTML += `
+        <div class="quicknote">
+          <span> ${tarefa} </span>
+        </div>
+    `
+  }
+
+
+  quicknotas.push({tarefa: tarefa})
+  localStorage.setItem("quicknotes", JSON.stringify(quicknotas))
+}
+
+//LEMBRAR DAS NOTAS RAPIDAS
+
+for(let i = 0; i < 1; i++){
+  let pegar = JSON.parse(localStorage.getItem("quicknotes"))
+
+  pegar.forEach((valor) => {
+    containerQuickNote.innerHTML += `
+          <div class="quicknote">
+            <span> ${valor.tarefa} </span>
+          </div>
+    `
+    quicknotas.push({tarefa: valor.tarefa})
+  })
+}
+
 
