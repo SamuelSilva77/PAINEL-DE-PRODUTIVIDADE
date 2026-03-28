@@ -17,6 +17,15 @@ body {
   padding: 20px;
 }
 
+.organizarGrid {
+  display: flex;
+  padding: 10px;
+  gap: 20px;
+  flex-flow: row wrap;
+  align-items: start;
+}
+
+
 /*HEADER*/
 
 header {
@@ -46,11 +55,14 @@ header p {
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 20px black;
+  min-height: 226px;
 }
 
-.lista h2 {
+.tituloLista {
   color: var(--corPrincial);
-  padding: 20px;
+  font-size: 20px;
+  padding: 12px 20px;
+  font-weight: bold;
   border-bottom: 1px solid var(--corPrincial);
 }
 
@@ -152,15 +164,35 @@ header p {
   right: 20px;
 }
 
+/* CARD DE CLIMA */
+
+.cardClima {
+  width: 355px;
+  border-radius: 5px;
+  background-color: rgb(21, 70, 113);
+  height: 226px;
+  box-shadow: 0 0 20px black;
+}
+
+.cardClima p {
+  padding: 12px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: white;
+}
+
 /*PAINEL DE PROGRESSO*/
 
 .progressos {
-  width: 1000px;
+  margin-top: 20px;
+  width: 1100px;
   padding: 10px 15px;
   background-color: white;
   font-weight: bolder;
   border-radius: 5px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  display: block;
 }
 
 .progressos div {
@@ -211,22 +243,20 @@ header p {
 
 .quicknotesCard {
   width: 355px;
-  margin: 20px 0;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 20px black;
 }
 
 .quicknotesCard p {
-  padding: 15px;
+  padding: 10px 20px;
   font-size: 20px;
   font-family: "Google Sans", sans-serif;
   letter-spacing: 1px;
 }
 
 .addQuickNote {
-  margin: 15px;
-  width: 325px;
+  width: 100%;
   padding: 5px 0;
 }
 
@@ -243,15 +273,91 @@ header p {
   margin: 15px 10px 0 0;
   padding: 15px;
   border-radius: 8px;
-  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);  
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
   border-bottom-right-radius: 15px;
-  
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.quicknote span{
+.quicknote span {
   font-size: 20px;
   font-family: "Shadows Into Light", cursive;
   letter-spacing: 2px;
   display: inline-block;
   transform: rotate(-5deg);
+}
+
+@media only screen and (min-width: 1300px) {
+  .cardClima {
+    margin: 0 70px;
+  }
+
+  .lista {
+    width: 510px;
+  }
+
+  .tituloLista {
+    font-size: 25px;
+    padding: 20px;
+  }
+
+  .cardClima {
+    width: 510px;
+    border-radius: 5px;
+    background-color: rgb(21, 70, 113);
+    height: 226px;
+    box-shadow: 0 0 20px black;
+  }
+
+  .quicknotesCard {
+    width: 510px;
+  }
+
+  .containerQuickNote {
+    margin: 25px 15px ;
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .cardClima{
+    margin: 0 40px;
+  }
+}
+
+@media only screen and (max-width: 885px) {
+  .cardClima{
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+
+  .lista {
+    width: 510px;
+  }
+
+  .tituloLista {
+    font-size: 25px;
+    padding: 20px;
+  }
+
+  .cardClima {
+    width: 510px;
+    border-radius: 5px;
+    background-color: rgb(21, 70, 113);
+    height: 226px;
+    box-shadow: 0 0 20px black;
+  }
+
+  .quicknotesCard {
+    width: 510px;
+  }
+
+  .containerQuickNote {
+    margin: 25px 15px ;
+    display: flex;
+    flex-flow: row wrap;
+  }
 }
