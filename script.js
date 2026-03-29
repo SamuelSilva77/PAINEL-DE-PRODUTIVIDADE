@@ -262,6 +262,48 @@ for(let i = 0; i < 1; i++){
 
 // API: https://api.openweathermap.org/data/2.5/weather?q=RioClaro&appid=5dfff448d68b4c710e24c14554f74cdd&units=metric&lang=pt_br
 
-const api = fetch("api.openweathermap.org/data/2.5/weather?q=Londres,uk&APPID=5dfff448d68b4c710e24c14554f74cdd")
 
-console.log(api)
+
+
+
+let temp = document.getElementById("temp")
+let cidade = document.getElementById("cidade")
+let imagemClima = document.getElementById("imagemClima")
+let CardClima = document.getElementById("cardClima")
+async function promessa (){
+  const pos = await new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  })
+    
+  let lat = pos.coords.latitude;
+  let lon = pos.coords.longitude;
+
+  let api = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a2fbd756d9cade03d9736cb1a04aac12&units=metric&lang=pt_br`);
+  let obj = await api.json()
+
+  console.log(obj)
+
+
+  temp.innerHTML = Math.floor(obj.main.temp) + " °C"
+  cidade.innerHTML = obj.name;
+
+  if(obj.weather[0].main == "Clear"){
+    CardClima.style.backgroundImage = "url('img/ceulimpo.webp')"
+    imagemClima.src = "img/sun.png"
+  }else if(obj.weather[0].main == "Clouds"){
+    CardClima.style.backgroundImage = "url('img/ceunublado.jpg')"
+    imagemClima.src = "img/cloudy.png"
+  }else{
+    CardClima.style.backgroundImage = "url('img/ceunublado.jpg')"
+    imagemClima.src = "img/cloudy.png"
+  }
+  
+
+}
+
+promessa()
+
+
+
+
+
