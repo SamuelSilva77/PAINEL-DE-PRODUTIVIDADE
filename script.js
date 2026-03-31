@@ -122,34 +122,37 @@ function deletar(valor) {
 for (let i = 0; i < 1; i++) {
   let info = JSON.parse(localStorage.getItem("array"));
   let atual = new Date().getDate();
-  info.forEach((valor) => {
-    if (valor.ultimoDia != atual) {
-      enviarHTML(valor.tarefa, "tarefa");
-      tarefasArray.push({
-        tarefa: valor.tarefa,
-        completado: false,
-        ultimoDia: atual,
-      });
-    } else if (valor.completado == true) {
-      //FUNÇAO QUE MUDA O HTML
-      enviarHTML(valor.tarefa, "tarefaC");
-      tarefasArray.push({
-        tarefa: valor.tarefa,
-        completado: valor.completado,
-        ultimoDia: valor.ultimoDia,
-      });
-    } else if (valor.completado == false) {
-      //FUNÇAO QUE MUDA O HTML
-      enviarHTML(valor.tarefa, "tarefa");
-      tarefasArray.push({
-        tarefa: valor.tarefa,
-        completado: valor.completado,
-        ultimoDia: valor.ultimoDia,
-      });
-    }
-  });
 
-  localStorage.setItem("array", JSON.stringify(tarefasArray));
+  if(info){
+    info.forEach((valor) => {
+      if (valor.ultimoDia != atual) {
+        enviarHTML(valor.tarefa, "tarefa");
+        tarefasArray.push({
+          tarefa: valor.tarefa,
+          completado: false,
+          ultimoDia: atual,
+        });
+      } else if (valor.completado == true) {
+        //FUNÇAO QUE MUDA O HTML
+        enviarHTML(valor.tarefa, "tarefaC");
+        tarefasArray.push({
+          tarefa: valor.tarefa,
+          completado: valor.completado,
+          ultimoDia: valor.ultimoDia,
+        });
+      } else if (valor.completado == false) {
+        //FUNÇAO QUE MUDA O HTML
+        enviarHTML(valor.tarefa, "tarefa");
+        tarefasArray.push({
+          tarefa: valor.tarefa,
+          completado: valor.completado,
+          ultimoDia: valor.ultimoDia,
+        });
+      }
+    });
+  
+    localStorage.setItem("array", JSON.stringify(tarefasArray));
+  }
 }
 
 //FILTRAGEM
@@ -248,18 +251,20 @@ for (let i = 0; i < 1; i++) {
   let atual = new Date().getDate();
 
   let pegar = JSON.parse(localStorage.getItem("quicknotes"));
-  pegar.forEach((valor) => {
-    if (valor.ultimoDia != atual) {
-    } else {
-      containerQuickNote.innerHTML += `
-            <div class="quicknote">
-              <span> ${valor.tarefa} </span>
-            </div>
-      `;
-      quicknotas.push({ tarefa: valor.tarefa, ultimoDia: atual });
-    }
-  });
-  localStorage.setItem("quicknotes", JSON.stringify(quicknotas));
+  if(pegar){
+    pegar.forEach((valor) => {
+      if (valor.ultimoDia != atual) {
+      } else {
+        containerQuickNote.innerHTML += `
+              <div class="quicknote">
+                <span> ${valor.tarefa} </span>
+              </div>
+        `;
+        quicknotas.push({ tarefa: valor.tarefa, ultimoDia: atual });
+      }
+    });
+    localStorage.setItem("quicknotes", JSON.stringify(quicknotas));
+  }
 }
 
 // CARD DE CLIMA
