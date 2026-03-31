@@ -47,8 +47,12 @@ function adicionarTarefa() {
     //FUNÇAO QUE MUDA O HTML
     enviarHTML(caixaBaixa, "tarefa");
 
-    let atual = new Date().getDate()
-    tarefasArray.push({ tarefa: caixaBaixa, completado: false, ultimoDia: atual });
+    let atual = new Date().getDate();
+    tarefasArray.push({
+      tarefa: caixaBaixa,
+      completado: false,
+      ultimoDia: atual,
+    });
 
     inputAdd.value = "";
     inputAdd.focus();
@@ -67,7 +71,6 @@ inputAdd.addEventListener("keyup", (valor) => {
   atualizarTabela();
 });
 
-
 //MUDAR CLASSE (MARCAR COMO CONCLUIDO)
 function mudarClasse(idTarefa) {
   let element = document.getElementById(idTarefa);
@@ -82,18 +85,12 @@ function mudarClasse(idTarefa) {
     element.classList.remove("tarefa");
     element.classList.add("tarefaC");
     tarefasArray[posiçao].completado = true;
-    localStorage.setItem(
-      "array",
-      JSON.stringify(tarefasArray),
-    );
+    localStorage.setItem("array", JSON.stringify(tarefasArray));
   } else {
     element.classList.remove("tarefaC");
     element.classList.add("tarefa");
     tarefasArray[posiçao].completado = false;
-    localStorage.setItem(
-      "array",
-      JSON.stringify(tarefasArray),
-    );
+    localStorage.setItem("array", JSON.stringify(tarefasArray));
   }
 
   //ATUALIZAR TABELA DE CONCLUSAO
@@ -105,7 +102,7 @@ function mudarClasse(idTarefa) {
 function deletar(valor) {
   let elemento = document.getElementById(valor);
   elemento.remove();
-  
+
   //DELETAR DO ARRAY
   let posicao = "";
   tarefasArray.forEach((index, ordem) => {
@@ -124,24 +121,35 @@ function deletar(valor) {
 
 for (let i = 0; i < 1; i++) {
   let info = JSON.parse(localStorage.getItem("array"));
-  let atual = new Date().getDate()
+  let atual = new Date().getDate();
   info.forEach((valor) => {
-    if(valor.ultimoDia != atual){
-      enviarHTML(valor.tarefa, "tarefa")
-      tarefasArray.push({ tarefa: valor.tarefa, completado: false , ultimoDia: atual});
-    }else if (valor.completado == true) {
+    if (valor.ultimoDia != atual) {
+      enviarHTML(valor.tarefa, "tarefa");
+      tarefasArray.push({
+        tarefa: valor.tarefa,
+        completado: false,
+        ultimoDia: atual,
+      });
+    } else if (valor.completado == true) {
       //FUNÇAO QUE MUDA O HTML
       enviarHTML(valor.tarefa, "tarefaC");
-      tarefasArray.push({ tarefa: valor.tarefa, completado: valor.completado, ultimoDia: valor.ultimoDia});
+      tarefasArray.push({
+        tarefa: valor.tarefa,
+        completado: valor.completado,
+        ultimoDia: valor.ultimoDia,
+      });
     } else if (valor.completado == false) {
       //FUNÇAO QUE MUDA O HTML
       enviarHTML(valor.tarefa, "tarefa");
-      tarefasArray.push({ tarefa: valor.tarefa, completado: valor.completado, ultimoDia: valor.ultimoDia});
+      tarefasArray.push({
+        tarefa: valor.tarefa,
+        completado: valor.completado,
+        ultimoDia: valor.ultimoDia,
+      });
     }
-    
-  })
+  });
 
-  localStorage.setItem("array", JSON.stringify(tarefasArray))
+  localStorage.setItem("array", JSON.stringify(tarefasArray));
 }
 
 //FILTRAGEM
@@ -183,127 +191,126 @@ function concluidas() {
 
 ///PAINEL DE CONCLUSAO
 
-
 function atualizarTabela() {
   //CAMPO DE TEXTO
-  let spanCompletos = document.getElementById("spanConcluidas")
-  let spanPendentes = document.getElementById("spanPendentes")
+  let spanCompletos = document.getElementById("spanConcluidas");
+  let spanPendentes = document.getElementById("spanPendentes");
 
   let completos = document.getElementById("barraConcluidos");
   let pendentes = document.getElementById("barraPendentes");
   completos.max = tarefasArray.length;
   pendentes.max = tarefasArray.length;
 
-  let tarefasConcluidas = []
-  let tarefasPendentes = []
+  let tarefasConcluidas = [];
+  let tarefasPendentes = [];
 
   tarefasArray.forEach((valor, ordem) => {
-    if(valor.completado == true){
-      tarefasConcluidas.push(ordem)
-    }else if(valor.completado == false){
-      tarefasPendentes.push(ordem)
+    if (valor.completado == true) {
+      tarefasConcluidas.push(ordem);
+    } else if (valor.completado == false) {
+      tarefasPendentes.push(ordem);
     }
-
-  })
-  completos.value = tarefasConcluidas.length
-  pendentes.value = tarefasPendentes.length
+  });
+  completos.value = tarefasConcluidas.length;
+  pendentes.value = tarefasPendentes.length;
 
   //ATUALIZAR CAMPO DE TEXTO
-  spanCompletos.innerHTML = tarefasConcluidas.length
-  spanPendentes.innerHTML = tarefasPendentes.length
+  spanCompletos.innerHTML = tarefasConcluidas.length;
+  spanPendentes.innerHTML = tarefasPendentes.length;
 }
 atualizarTabela();
 
 //QUICK NOTE
 
-const quicknotas = []
-let containerQuickNote = document.getElementById("containerQuickNote")
+const quicknotas = [];
+let containerQuickNote = document.getElementById("containerQuickNote");
 
-function addQuickNote(){
-  let tarefa = prompt("Insira a tarefa")
-  
-  if(tarefa){
-    let containerQuickNote = document.getElementById("containerQuickNote")
+function addQuickNote() {
+  let tarefa = prompt("Insira a tarefa");
+
+  if (tarefa) {
+    let containerQuickNote = document.getElementById("containerQuickNote");
     containerQuickNote.innerHTML += `
         <div class="quicknote">
           <span> ${tarefa} </span>
         </div>
-    `
+    `;
   }
 
-  let atual = new Date().getDate()
-  quicknotas.push({tarefa: tarefa, ultimoDia: atual})
-  localStorage.setItem("quicknotes", JSON.stringify(quicknotas))
+  let atual = new Date().getDate();
+  quicknotas.push({ tarefa: tarefa, ultimoDia: atual });
+  localStorage.setItem("quicknotes", JSON.stringify(quicknotas));
 }
 
 //LEMBRAR DAS NOTAS RAPIDAS
 
-for(let i = 0; i < 1; i++){
-  let atual = new Date().getDate()
+for (let i = 0; i < 1; i++) {
+  let atual = new Date().getDate();
 
-  let pegar = JSON.parse(localStorage.getItem("quicknotes"))
+  let pegar = JSON.parse(localStorage.getItem("quicknotes"));
   pegar.forEach((valor) => {
-    if(valor.ultimoDia != atual){
-      
-
-    }else{
+    if (valor.ultimoDia != atual) {
+    } else {
       containerQuickNote.innerHTML += `
             <div class="quicknote">
               <span> ${valor.tarefa} </span>
             </div>
-      `
-      quicknotas.push({tarefa: valor.tarefa, ultimoDia: atual})
+      `;
+      quicknotas.push({ tarefa: valor.tarefa, ultimoDia: atual });
     }
-  })
-  localStorage.setItem("quicknotes", JSON.stringify(quicknotas))
+  });
+  localStorage.setItem("quicknotes", JSON.stringify(quicknotas));
 }
 
 // CARD DE CLIMA
 
 // API: https://api.openweathermap.org/data/2.5/weather?q=RioClaro&appid=5dfff448d68b4c710e24c14554f74cdd&units=metric&lang=pt_br
+// fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a2fbd756d9cade03d9736cb1a04aac12&units=metric&lang=pt_br`);
 
+let temp = document.getElementById("temp");
+let cidade = document.getElementById("cidade");
+let imagemClima = document.getElementById("imagemClima");
+let CardClima = document.getElementById("cardClima");
 
+navigator.geolocation.getCurrentPosition(async (pos, erro) => {
+  if (pos) {
+    lat = pos.coords.latitude;
+    lon = pos.coords.longitude;
 
+    let dados = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a2fbd756d9cade03d9736cb1a04aac12&units=metric&lang=pt_br`,
+    );
+    let api = await dados.json();
 
-
-let temp = document.getElementById("temp")
-let cidade = document.getElementById("cidade")
-let imagemClima = document.getElementById("imagemClima")
-let CardClima = document.getElementById("cardClima")
-async function promessa (){
-  const pos = await new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  })
-    
-  let lat = pos.coords.latitude;
-  let lon = pos.coords.longitude;
-
-  let api = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=a2fbd756d9cade03d9736cb1a04aac12&units=metric&lang=pt_br`);
-  let obj = await api.json()
-
-  console.log(obj)
-
-
-  temp.innerHTML = Math.floor(obj.main.temp) + " °C"
-  cidade.innerHTML = obj.name;
-
-  if(obj.weather[0].main == "Clear"){
-    CardClima.style.backgroundImage = "url('img/ceulimpo.webp')"
-    imagemClima.src = "img/sun.png"
-  }else if(obj.weather[0].main == "Clouds"){
-    CardClima.style.backgroundImage = "url('img/ceunublado.jpg')"
-    imagemClima.src = "img/cloudy.png"
-  }else{
-    CardClima.style.backgroundImage = "url('img/ceunublado.jpg')"
-    imagemClima.src = "img/cloudy.png"
+    cidade.innerHTML = api.name;
+    temp.innerHTML = Math.floor(api.main.temp) + "°C";
+    //
+    if (api.weather[0].main == "Rain") {
+      imagemClima.src = "img/nuvemchuva.png";
+      CardClima.style.backgroundImage = "url('img/ceuchuvoso.jpg')";
+    } else if (api.weather[0].main == "Clear") {
+      imagemClima.src = "img/sun.png";
+      CardClima.style.backgroundImage = "url('img/ceulimpo.webp')";
+    } else {
+      imagemClima.src = "img/cloudy.png";
+      CardClima.style.backgroundImage = "url('img/ceunublado.jpg')";
+    }
+  } else if (erro) {
+    alert("Erro ao pegar sua localização");
+    let dados = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=-23.5489&lon=-46.6388&appid=a2fbd756d9cade03d9736cb1a04aac12&units=metric&lang=pt_br`,
+    );
+    let api = await dados.json();
+    temp.innerHTML = Math.floor(api.main.temp) + "°C";
+    if (api.weather[0].main == "Rain") {
+      imagemClima.src = "img/nuvemchuva.png";
+      CardClima.style.backgroundImage = "url('img/ceuchuvoso.jpg')";
+    } else if (api.weather[0].main == "Clear") {
+      imagemClima.src = "img/sun.png";
+      CardClima.style.backgroundImage = "url('img/ceulimpo.webp')";
+    } else {
+      imagemClima.src = "img/cloudy.png";
+      CardClima.style.backgroundImage = "url('img/ceunublado.jpg')";
+    }
   }
-  
-
-}
-
-promessa()
-
-
-
-
-
+});
